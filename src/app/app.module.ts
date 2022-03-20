@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { QuizesComponent } from './quizes/quizes.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizesComponent,
-    NavbarComponent
+    NavbarComponent,
+    TakeQuizComponent
   ],
   imports: [
     BrowserModule,

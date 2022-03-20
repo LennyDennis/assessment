@@ -1,0 +1,31 @@
+/* @import '@core/scss/angular/libs/sweet-alerts.component.scss'; */
+
+
+/* table tbody tr td:first-of-type {
+    width: 5% !important;
+    max-width: 0.5em;
+}
+
+::ng-deep .quiz-results {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+.quiz-checkbox {
+    text-align: center;
+} */
+
+.quiz {
+    color: white !important;
+}
+
+.question {
+    font-size: larger;
+    font-weight: bold;
+}
+
+
+/* .answer {
+    text-align: left;
+    text-align: left !important;
+}  */
