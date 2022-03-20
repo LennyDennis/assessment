@@ -1,0 +1,47 @@
+.card {
+    background-color: #f0f1f2;
+    border-radius: 5px;
+}
+
+.card-top {
+    position: relative !important;
+}
+
+.card-top-btn {
+    padding: 0px 10px;
+    margin: 0px;
+}
+
+.btn-left {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+
+.btn-right {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
+.quiz-description {
+    background-color: white;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: scale-down;
+}
+
+.card-footer-button {
+    border-radius: 10px;
+    font-weight: bold;
+    color: white !important;
+}
+
+.taken-count {
+    border-left: 2px solid white;
+    text-align: justify;
+    text-align-last: left;
+}
