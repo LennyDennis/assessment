@@ -8,6 +8,7 @@ import { QuizesComponent } from './quizes/quizes.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
+import { AddQuestionComponent } from './add-question/add-question.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { AddQuizComponent } from './add-quiz/add-quiz.component';
     QuizesComponent,
     NavbarComponent,
     TakeQuizComponent,
-    AddQuizComponent
+    AddQuizComponent,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,
