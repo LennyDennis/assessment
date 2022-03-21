@@ -44,3 +44,7 @@
 .start-quiz-btn {
     border-radius: 50px;
 }
+
+.container-fluid {
+    padding: 100px;
+}

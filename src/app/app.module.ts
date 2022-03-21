@@ -9,6 +9,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 import { AddQuestionComponent } from './add-question/add-question.component';
+import { ResultsComponent } from './results/results.component';
+import { LogComponent } from './log/log.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { AddQuestionComponent } from './add-question/add-question.component';
     NavbarComponent,
     TakeQuizComponent,
     AddQuizComponent,
-    AddQuestionComponent
+    AddQuestionComponent,
+    ResultsComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
