@@ -10,8 +10,7 @@ import { QuizService } from 'app/services/quiz/quiz.service';
 })
 export class QuizesComponent implements OnInit {
 
-  public quizes: Quiz[]  //to create interface for dependents
-
+  public quizes: Quiz[]
 
   constructor(
     private _quizService: QuizService

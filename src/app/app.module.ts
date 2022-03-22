@@ -1,3 +1,4 @@
+import { QuizService } from './services/quiz/quiz.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -36,7 +37,9 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    QuizService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

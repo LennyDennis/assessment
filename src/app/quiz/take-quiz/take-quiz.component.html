@@ -3,10 +3,10 @@
     <a class="btn btn-success px-3 d-flex align-items-center float-right ">
         <i class="material-icons mr-2 fa-2x">arrow_back</i> Back
     </a>
-    <div class="d-flex row justify-content-between align-items-center">
+    <div *ngIf="quiz" class="d-flex row justify-content-between align-items-center">
         <div class="col-12 px-0">
             <h4 class=" font-weight-bold">
-                Quiz One
+                {{quiz.title}}
             </h4>
         </div>
     </div>

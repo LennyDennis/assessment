@@ -14,10 +14,10 @@ const routes: Routes = [
     path: 'quizes',
     component: QuizesComponent
   },
-  // {
-  //   path: 'subject/:id',
-  //   component: TakeQuizComponent,
-  // },
+  {
+    path: 'questions/:quizId',
+    component: TakeQuizComponent,
+  },
   // {
   //   path: 'subject/:subjectId/form/:formId',
   //   component: AddQuestionComponent,
@@ -44,8 +44,6 @@ const routes: Routes = [
   declarations: [
     QuizesComponent,
     TakeQuizComponent,
-    AddQuestionComponent,
-    TakeQuizComponent
-  ]
+    AddQuestionComponent]
 })
 export class QuizModule { }

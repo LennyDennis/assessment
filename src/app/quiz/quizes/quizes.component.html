@@ -14,7 +14,7 @@
                     <p class="card-text" m-0 p-0>Quiz</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between py-0 my-0">
-                    <a href="#" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Take Quiz</a>
+                    <a [routerLink]="['/quiz/questions', note.id ]" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Take Quiz</a>
                     <a href="#" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Results</a>
                     <div class="taken-count text">
                         <p class="ml-3 pt-2" *ngIf="(note.takenCount > 1)"><b>{{note.takenCount}}</b><br> Times Taken</p>
