@@ -1,0 +1,30 @@
+<div class="container-fluid">
+
+    <div *ngIf="quizes" class="row my-3">
+
+        <div class="col-md-3 mb-4" *ngFor="let note of quizes">
+            <div class="card">
+                <div class="card-top">
+                    <img class="card-img-top" src="../../assets/images/image.png" alt="Card image cap">
+                    <a href="#" class="btn btn-danger card-top-btn btn-left" role="button">Delete</a>
+                    <a href="#" class="btn btn-success card-top-btn btn-right" role="button">Edit</a>
+                </div>
+                <div class="card-body quiz-description">
+                    <h5 class="card-title">{{note.title}}</h5>
+                    <p class="card-text" m-0 p-0>Quiz</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between py-0 my-0">
+                    <a href="#" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Take Quiz</a>
+                    <a href="#" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Results</a>
+                    <div class="taken-count text">
+                        <p class="ml-3 pt-2" *ngIf="(note.takenCount > 1)"><b>{{note.takenCount}}</b><br> Times Taken</p>
+                        <p class="ml-3 pt-2" *ngIf="(note.takenCount == 1)"><b>{{note.takenCount}}</b><br> Time Taken</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <p>It works</p> -->

@@ -4,30 +4,37 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { QuizesComponent } from './quizes/quizes.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { TakeQuizComponent } from './take-quiz/take-quiz.component';
-import { AddQuizComponent } from './add-quiz/add-quiz.component';
-import { AddQuestionComponent } from './add-question/add-question.component';
 import { ResultsComponent } from './results/results.component';
 import { LogComponent } from './log/log.component';
+import { RouterModule, Routes } from '@angular/router';
+import { QuizModule } from './quiz/quiz.module';
+
+const appRoutes: Routes = [
+  {
+    path: 'quiz',
+    loadChildren: () => QuizModule
+  },
+  {
+    path: '',
+    redirectTo: 'quiz',
+    pathMatch: 'full'
+  }
+]
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuizesComponent,
     NavbarComponent,
-    TakeQuizComponent,
-    AddQuizComponent,
-    AddQuestionComponent,
     ResultsComponent,
-    LogComponent
+    LogComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
