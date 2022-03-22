@@ -1,8 +1,11 @@
 <div class="container pt-4">
 
-    <a class="btn btn-success px-3 d-flex align-items-center float-right ">
-        <i class="material-icons mr-2 fa-2x">arrow_back</i> Back
-    </a>
+    <div *ngIf="questions">
+        <a (click)="backClicked()" [hidden]="firstQuestion()" class="btn btn-success px-3 d-flex align-items-center float-right" role="button">
+            <i class="material-icons mr-2 fa-2x">arrow_back</i> Back
+        </a>
+    </div>
+
     <div *ngIf="quiz" class="d-flex row justify-content-between align-items-center">
         <div class="col-12 px-0">
             <h4 class=" font-weight-bold">

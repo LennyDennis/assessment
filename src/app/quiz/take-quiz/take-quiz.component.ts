@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'app/models/quiz';
 import { QuizService } from 'app/services/quiz/quiz.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-take-quiz',
@@ -21,6 +22,7 @@ export class TakeQuizComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _quizService: QuizService,
+    private _location: Location
   ) {
     this._activatedRoute.data.subscribe(data => {
       this.quizId = this._activatedRoute.snapshot.params['quizId'];
@@ -38,7 +40,6 @@ export class TakeQuizComponent implements OnInit {
         });
   }
 
-
   fetchAnswers(quizId) {
     this._quizService.getQuestions(quizId)
       .subscribe(
@@ -47,6 +48,10 @@ export class TakeQuizComponent implements OnInit {
           this.currentQuestion = this.questions[0];
           this.currentQuestion["order"] = 1;
         });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
   lastQuestion(): boolean {
