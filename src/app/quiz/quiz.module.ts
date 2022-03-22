@@ -6,6 +6,7 @@ import { QuizService } from 'app/services/quiz/quiz.service';
 import { AddQuestionComponent } from './add-question/add-question.component';
 import { QuizesComponent } from './quizes/quizes.component';
 import { TakeQuizComponent } from './take-quiz/take-quiz.component';
+import { AddQuizComponent } from './add-quiz/add-quiz.component';
 
 
 
@@ -18,13 +19,13 @@ const routes: Routes = [
     path: 'questions/:quizId',
     component: TakeQuizComponent,
   },
-  // {
-  //   path: 'subject/:subjectId/form/:formId',
-  //   component: AddQuestionComponent,
-  // },
+  {
+    path: 'add',
+    component: AddQuizComponent,
+  },
   // {
   //   path: 'subject/:subjectId/form/:formId/topic/:topicId',
-  //   component: TakeQuizComponent,
+  //   component: AddQuizComponent,
   // },
   {
     path: '',
@@ -44,6 +45,7 @@ const routes: Routes = [
   declarations: [
     QuizesComponent,
     TakeQuizComponent,
+    AddQuizComponent,
     AddQuestionComponent]
 })
 export class QuizModule { }
