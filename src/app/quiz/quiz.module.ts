@@ -7,6 +7,7 @@ import { AddQuestionComponent } from './add-question/add-question.component';
 import { QuizesComponent } from './quizes/quizes.component';
 import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes)],
   providers: [
     QuizService,

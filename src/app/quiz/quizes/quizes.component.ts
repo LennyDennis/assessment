@@ -26,7 +26,6 @@ export class QuizesComponent implements OnInit {
       .subscribe(
         res => {
           this.quizes = res;
-          console.log(this.quizes)
         });
   }
 

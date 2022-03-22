@@ -31,4 +31,9 @@ export class QuizService {
       .map((res: Response) => <Question[]>res.json());
   }
 
+  createQuiz(quizDetails): Observable<any> {
+    return this._http.post(this._quizBaseUrl, quizDetails)
+      .map(result => result.json());
+  }
+
 }

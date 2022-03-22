@@ -29,7 +29,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     ResultsComponent,
-    LogComponent,
+    LogComponent
   ],
   imports: [
     BrowserModule,
