@@ -5,40 +5,28 @@
     </a>
     <div class="d-flex row justify-content-between align-items-center">
         <div class="col-12 px-0">
-            <h4 class="mt-3 font-weight-bold">Results</h4>
+            <h4 class="mt-3 font-weight-bold">Logs</h4>
         </div>
     </div>
 
-    <div class="card bg-light">
+    <div class="card bg-light" *ngIf="logs">
         <div class="card-body">
             <div>
                 <table class="table table-striped">
                     <thead class="table-dark">
                         <tr>
-                            <th scope="col">No</th>
+                            <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Action</th>
                             <th scope="col">Timestamp</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>Otto</td>
+                        <tr *ngFor="let log of logs">
+                            <th scope="row">{{log.id}}</th>
+                            <td>{{log.name}}</td>
+                            <td>{{log.action}}</td>
+                            <td>{{log.time}}</td>
                         </tr>
                     </tbody>
                 </table>

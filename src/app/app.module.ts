@@ -10,6 +10,9 @@ import { ResultsComponent } from './results/results.component';
 import { LogComponent } from './log/log.component';
 import { RouterModule, Routes } from '@angular/router';
 import { QuizModule } from './quiz/quiz.module';
+import { LogService } from './services/logs/log.service';
+import { QuestionsService } from './services/question/questions.service';
+import { DatePipe } from '@angular/common';
 
 const appRoutes: Routes = [
   {
@@ -42,7 +45,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
-    QuizService
+    QuizService,
+    LogService,
+    QuestionsService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -12,12 +12,12 @@ export class LogService {
 
   constructor(private _http: Http) { }
 
-  getQuizes(): Observable<Logs[]> {
+  getLogs(): Observable<Logs[]> {
     return this._http.get(this._logBaseUrl)
       .map((res: Response) => <Logs[]>res.json());
   }
 
-  createQuiz(logDetails): Observable<any> {
+  createLog(logDetails): Observable<any> {
     return this._http.post(this._logBaseUrl, logDetails)
       .map(result => result.json());
   }
