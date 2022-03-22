@@ -4,6 +4,7 @@ import { Quiz } from 'app/models/quiz';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Question } from 'app/models/question';
 
 
 @Injectable()
@@ -21,9 +22,13 @@ export class QuizService {
   }
 
   getQuiz(quizId): Observable<Quiz> {
-    return this._http.get(`${this._quizBaseUrl}/quizId`)
+    return this._http.get(`${this._quizBaseUrl}/${quizId}`)
       .map((res: Response) => <Quiz>res.json());
+  }
 
+  getQuestions(quizId): Observable<Question[]> {
+    return this._http.get(`${this._quizBaseUrl}/${quizId}/questions`)
+      .map((res: Response) => <Question[]>res.json());
   }
 
 }
