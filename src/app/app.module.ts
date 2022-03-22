@@ -17,6 +17,10 @@ const appRoutes: Routes = [
     loadChildren: () => QuizModule
   },
   {
+    path: 'logs',
+    component: LogComponent
+  },
+  {
     path: '',
     redirectTo: 'quiz',
     pathMatch: 'full'
