@@ -4,5 +4,5 @@ export interface Result {
     id: number;
     quizId: number;
     time: string;
-    answers: ResultAnswer[]
+    answers: any[]
 }

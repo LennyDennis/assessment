@@ -1,4 +1,4 @@
-<div class="container pt-4">
+<div class="container pt-4" *ngIf="result">
 
     <div>
         <a (click)="backClicked()" class="btn btn-success px-3 d-flex align-items-center float-right" role="button">
@@ -9,66 +9,26 @@
     <div class="d-flex row justify-content-between align-items-center">
         <div class="col-12 px-0">
             <h4 class=" font-weight-bold">
-                Quiz Results
+                {{result.name}} Results
             </h4>
         </div>
     </div>
 
-    <div>
-        <div class="card bg-secondary text-white mt-3">
-            <div class="card-body">
-
+    <div class="card bg-secondary text-white mt-3">
+        <div class="card-body">
+            <div *ngFor="let question of result.questions">
                 <p class="font-weight-bold">Question 1</p>
-
-                <p class="question">Hey</p>
-
-                <div class="card mb-3 bg-dark">
-                    <div class="card-body py-3">
-                        Answer 1
+                <p class="question">{{question.question}}</p>
+                <div *ngFor="let answer of question.resultAnswers">
+                    <div class="card mb-3" [ngClass]=" answer.answered ? answer.correct ? 'bg-success':'bg-danger': answer.correct? 'bg-success' : 'bg-dark' ">
+                        <div class="card-body py-3 d-flex justify-content-between">
+                            {{answer.answer}}
+                            <i class="material-icons mr-2 fa-2x">{{ answer.answered ? answer.correct ? 'check' : 'close' : answer.correct ? 'check' : '' }}</i>
+                        </div>
                     </div>
                 </div>
-
-                <div class="card mb-3 bg-dark">
-                    <div class="card-body py-3">
-                        Answer 1
-                    </div>
-                </div>
-
-                <div class="card mb-3 bg-success">
-                    <div class="card-body py-3 d-flex justify-content-between">
-                        Answer 1
-                        <i class="material-icons mr-2 fa-2x">check</i>
-                    </div>
-                </div>
-
-                <p class=" font-weight-bold">Question 2</p>
-
-                <p class="question">Hey</p>
-
-                <div class="card mb-3 bg-dark">
-                    <div class="card-body py-3">
-                        Answer 1
-                    </div>
-                </div>
-
-                <div class="card mb-3 bg-danger">
-                    <div class="card-body py-3 d-flex justify-content-between">
-                        Answer 1
-                        <i class="material-icons mr-2 fa-2x">close</i>
-                    </div>
-                </div>
-
-                <div class="card mb-3 bg-success">
-                    <div class="card-body py-3 d-flex justify-content-between">
-                        Answer 1
-                        <i class="material-icons mr-2 fa-2x">check</i>
-                    </div>
-                </div>
-
-                <p class="float-right mr-2">Powered by LeadQuizzes</p>
             </div>
-
-
+            <p class="float-right mr-2">Powered by LeadQuizzes</p>
         </div>
     </div>
 

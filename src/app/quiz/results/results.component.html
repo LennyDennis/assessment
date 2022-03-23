@@ -27,7 +27,7 @@
                             <td>{{result.name}}</td>
                             <td>{{result.time}}</td>
                             <td>
-                                <a [routerLink]="['/quiz/answers']" class="btn btn-sm btn-success card-footer-button px-3 " role="button">View Answers</a>
+                                <a [routerLink]="['/quiz/answers', result.id ]" class="btn btn-sm btn-success card-footer-button px-3 " role="button">View Answers</a>
                             </td>
                         </tr>
                     </tbody>

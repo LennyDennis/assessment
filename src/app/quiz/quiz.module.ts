@@ -31,12 +31,8 @@ const routes: Routes = [
     path: 'results/:quizId',
     component: ResultsComponent,
   },
-  // {
-  //   path: 'answers/:resultId/quiz/:quizId',
-  //   component: AddQuizComponent,
-  // },
   {
-    path: 'answers',
+    path: 'answers/:resultId',
     component: AnswersComponent,
   },
   {

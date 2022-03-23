@@ -1,3 +1,4 @@
+import { ResultService } from './services/result/result.service';
 import { QuizService } from './services/quiz/quiz.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
     LogService,
     QuestionsService,
     UtilService,
+    ResultService,
     DatePipe
   ],
   bootstrap: [AppComponent]

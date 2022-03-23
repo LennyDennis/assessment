@@ -35,7 +35,6 @@ export class AddQuizComponent implements OnInit {
   createQuiz(quizDetails) {
     this._quizService.createQuiz(quizDetails).subscribe(
       (res) => {
-        console.log(quizDetails);
         let date = new Date()
         let logDetails = {
           "name": quizDetails.name,
@@ -62,7 +61,6 @@ export class AddQuizComponent implements OnInit {
 
       }
     );
-
   }
 
   ngOnInit() {

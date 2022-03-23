@@ -7,18 +7,24 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class ResultService {
 
-  private _resultBaseUrl = `${environment.baseUrl}/logs`
+  private _resultBaseUrl = `${environment.baseUrl}/results`
 
   constructor(private _http: Http) { }
 
-  getResults(): Observable<Result[]> {
-    return this._http.get(this._resultBaseUrl)
-      .map((res: Response) => <Result[]>res.json());
+  // getResults(): Observable<Result[]> {
+  //   return this._http.get(this._resultBaseUrl)
+  //     .map((res: Response) => <Result[]>res.json());
+  // }
+
+  getResult(resultId): Observable<Result> {
+    return this._http.get(`${this._resultBaseUrl}/${resultId}`)
+      .map((res: Response) => <Result>res.json());
   }
 
-  createLog(logDetails): Observable<any> {
-    return this._http.post(this._resultBaseUrl, logDetails)
-      .map(result => result.json());
-  }
+
+  // createLog(logDetails): Observable<any> {
+  //   return this._http.post(this._resultBaseUrl, logDetails)
+  //     .map(result => result.json());
+  // }
 
 }
