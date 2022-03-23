@@ -22,9 +22,9 @@ export class ResultService {
   }
 
 
-  // createLog(logDetails): Observable<any> {
-  //   return this._http.post(this._resultBaseUrl, logDetails)
-  //     .map(result => result.json());
-  // }
+  createResult(resultDetails): Observable<any> {
+    return this._http.post(this._resultBaseUrl, resultDetails)
+      .map(result => result.json());
+  }
 
 }

@@ -1,5 +1,6 @@
 export interface Answer {
     id: number;
     answer: string;
-    correct: boolean
+    correct: boolean;
+    isSelected?: boolean
 }
