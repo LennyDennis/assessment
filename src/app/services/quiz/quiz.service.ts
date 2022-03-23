@@ -6,15 +6,23 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Question } from 'app/models/question';
 import { Result } from 'app/models/result';
+import { BehaviorSubject } from 'rxjs';
 
 
 @Injectable()
 export class QuizService {
 
+  quiz: Quiz
+
+  isVisibleSource: BehaviorSubject<boolean> = new BehaviorSubject(false);
+
+
   private _quizBaseUrl = `${environment.baseUrl}/quizs`
 
+  constructor(private _http: Http) {
+    console.log("Test")
 
-  constructor(private _http: Http) { }
+  }
 
   getQuizes(): Observable<Quiz[]> {
     return this._http.get(this._quizBaseUrl)
@@ -22,7 +30,7 @@ export class QuizService {
 
   }
 
-  getQuiz(quizId): Observable<Quiz> {
+  getQuizApi(quizId): Observable<Quiz> {
     return this._http.get(`${this._quizBaseUrl}/${quizId}`)
       .map((res: Response) => <Quiz>res.json());
   }
@@ -40,6 +48,15 @@ export class QuizService {
   getResults(quizId): Observable<Result[]> {
     return this._http.get(`${this._quizBaseUrl}/${quizId}/results`)
       .map((res: Response) => <Result[]>res.json());
+  }
+
+
+  setQuiz(quiz: Quiz) {
+    this.quiz = quiz
+  }
+
+  getQuiz() {
+    return this.quiz
   }
 
 

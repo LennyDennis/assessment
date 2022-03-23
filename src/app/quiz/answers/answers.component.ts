@@ -1,7 +1,6 @@
-import { ResultService } from './../../services/result/result.service';
+import { ResultService } from '../../services/result/result.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { QuizService } from 'app/services/quiz/quiz.service';
 import { Result } from 'app/models/result';
 
 @Component({

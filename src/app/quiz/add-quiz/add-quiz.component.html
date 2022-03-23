@@ -35,19 +35,19 @@
 
                             <label class="description">Quiz Description:</label>
                             <div class="input-group mb-3">
-                                <textarea class="form-control alert-secondary" id="description" name="description" rows="4" ngModel required>
+                                <textarea class="form-control alert-secondary" id="description" name="description" rows="4" [(ngModel)]="description" required>
                         </textarea>
                             </div>
 
                             <label class="action">Call to Action Label:*</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control alert-secondary" id="action" id="action" name="action" aria-describedby="basic-addon3" ngModel required>
+                                <input type="text" class="form-control alert-secondary" id="action" name="action" aria-describedby="basic-addon3" [(ngModel)]="action" required>
                             </div>
 
                         </div>
                         <div class="card-footer py-0">
                             <div class="float-right">
-                                <a class="btn btn-primary card-footer-button my-2 px-4" role="button">Questions </a>
+                                <a *ngIf="quizId" routerLink="/quiz/questions" class="btn btn-primary card-footer-button my-2 px-4" role="button">Questions </a>
                                 <button type="submit" class="btn btn-success card-footer-button my-2 px-4" role="button">Save Basic Info </button>
                             </div>
                         </div>

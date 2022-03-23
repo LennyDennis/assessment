@@ -1,5 +1,4 @@
 export interface Quiz {
-    asObservable: any;
     id: number;
     name: string;
     imageUrl: string;

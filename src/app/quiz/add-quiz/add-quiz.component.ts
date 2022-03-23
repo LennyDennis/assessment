@@ -12,6 +12,12 @@ import { DatePipe } from '@angular/common';
 })
 export class AddQuizComponent implements OnInit {
 
+  public quizId: any;
+  title = "test"
+  name = "test"
+  description = "test"
+  action = "test"
+
   constructor(
     private _quizService: QuizService,
     private _logService: LogService,
@@ -41,7 +47,10 @@ export class AddQuizComponent implements OnInit {
           "action": "Create",
           "time": this._datePipe.transform(date, 'dd/MM/yyyy')
         }
-        this.createLog(logDetails)
+        // this.createLog(logDetails)
+
+        this.quizId = res.id
+        this._quizService.setQuiz(res)
 
       },
       (err) => {
@@ -65,5 +74,6 @@ export class AddQuizComponent implements OnInit {
 
   ngOnInit() {
   }
+
 
 }

@@ -37,7 +37,7 @@ export class TakeQuizComponent implements OnInit {
   }
 
   fetchQuiz(quizId) {
-    this._quizService.getQuiz(quizId)
+    this._quizService.getQuizApi(quizId)
       .subscribe(
         res => {
           this.quiz = res;
@@ -126,9 +126,7 @@ export class TakeQuizComponent implements OnInit {
   createResult(resultDetails) {
     this._resultService.createResult(resultDetails).subscribe(
       (res) => {
-
         console.log("res" + "created result");
-
       },
       (err) => {
         console.log("err" + err);
