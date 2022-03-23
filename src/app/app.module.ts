@@ -6,13 +6,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { ResultsComponent } from './results/results.component';
 import { LogComponent } from './log/log.component';
 import { RouterModule, Routes } from '@angular/router';
 import { QuizModule } from './quiz/quiz.module';
 import { LogService } from './services/logs/log.service';
 import { QuestionsService } from './services/question/questions.service';
 import { DatePipe } from '@angular/common';
+import { UtilService } from './services/util/util.service';
+import { AnswersComponent } from './quiz/answers/answers.component';
 
 const appRoutes: Routes = [
   {
@@ -35,7 +36,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavbarComponent,
-    ResultsComponent,
     LogComponent
   ],
   imports: [
@@ -48,6 +48,7 @@ const appRoutes: Routes = [
     QuizService,
     LogService,
     QuestionsService,
+    UtilService,
     DatePipe
   ],
   bootstrap: [AppComponent]

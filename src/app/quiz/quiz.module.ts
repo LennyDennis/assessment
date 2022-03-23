@@ -1,3 +1,4 @@
+import { Answer } from './../models/answer';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,8 @@ import { QuizesComponent } from './quizes/quizes.component';
 import { TakeQuizComponent } from './take-quiz/take-quiz.component';
 import { AddQuizComponent } from './add-quiz/add-quiz.component';
 import { FormsModule } from '@angular/forms';
+import { ResultsComponent } from './results/results.component';
+import { AnswersComponent } from './answers/answers.component';
 
 
 
@@ -24,10 +27,18 @@ const routes: Routes = [
     path: 'add',
     component: AddQuizComponent,
   },
+  {
+    path: 'results/:quizId',
+    component: ResultsComponent,
+  },
   // {
-  //   path: 'subject/:subjectId/form/:formId/topic/:topicId',
+  //   path: 'answers/:resultId/quiz/:quizId',
   //   component: AddQuizComponent,
   // },
+  {
+    path: 'answers',
+    component: AnswersComponent,
+  },
   {
     path: '',
     redirectTo: 'quizes',
@@ -48,6 +59,8 @@ const routes: Routes = [
     QuizesComponent,
     TakeQuizComponent,
     AddQuizComponent,
+    ResultsComponent,
+    AnswersComponent,
     AddQuestionComponent]
 })
 export class QuizModule { }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Logs } from 'app/models/logs';
 import { LogService } from 'app/services/logs/log.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-log',
@@ -12,7 +14,7 @@ export class LogComponent implements OnInit {
   public logs: Logs[]
 
   constructor(
-    private _logService: LogService
+    private _logService: LogService,
   ) {
     this.fetchLogs();
   }

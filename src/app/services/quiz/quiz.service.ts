@@ -5,6 +5,7 @@ import { environment } from 'environments/environment';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Question } from 'app/models/question';
+import { Result } from 'app/models/result';
 
 
 @Injectable()
@@ -35,5 +36,11 @@ export class QuizService {
     return this._http.post(this._quizBaseUrl, quizDetails)
       .map(result => result.json());
   }
+
+  getResults(quizId): Observable<Result[]> {
+    return this._http.get(`${this._quizBaseUrl}/${quizId}/results`)
+      .map((res: Response) => <Result[]>res.json());
+  }
+
 
 }
