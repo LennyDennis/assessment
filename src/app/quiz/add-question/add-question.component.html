@@ -19,9 +19,6 @@
                 <p class="mt-2 font-weight-bold">Question {{questionIndex+1}}</p>
                 <div class="form-group mb-2">
                     <input type="text" class="form-control alert-secondary" id="question{{questionIndex}}" name="question{{questionIndex}}" aria-describedby="basic-addon3" [(ngModel)]="qt.question" required>
-                    <span class="invalid-form" *ngIf="qt?.hasError">
-                        <small class="form-text text-danger">This field is required!</small>
-                    </span>
                 </div>
 
                 <p class="question">Answer Type:</p>

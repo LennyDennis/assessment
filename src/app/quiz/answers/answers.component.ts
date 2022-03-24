@@ -2,6 +2,7 @@ import { ResultService } from '../../services/result/result.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Result } from 'app/models/result';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-answers',
@@ -15,7 +16,8 @@ export class AnswersComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private _resultService: ResultService
+    private _resultService: ResultService,
+    private _location: Location,
   ) {
     this._activatedRoute.data.subscribe(data => {
       this.resultId = this._activatedRoute.snapshot.params['resultId'];
@@ -34,6 +36,10 @@ export class AnswersComponent implements OnInit {
         });
   }
   ngOnInit() {
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }

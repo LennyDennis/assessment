@@ -9,6 +9,7 @@ import { Result } from 'app/models/result';
 import { BehaviorSubject } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { LogService } from '../logs/log.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -21,7 +22,8 @@ export class QuizService {
 
   private _quizBaseUrl = `${environment.baseUrl}/quizs`
 
-  constructor(private _http: Http) {
+  constructor(private _http: Http, private route: Router
+  ) {
   }
 
   getQuizes(): Observable<Quiz[]> {

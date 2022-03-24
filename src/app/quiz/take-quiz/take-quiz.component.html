@@ -1,6 +1,6 @@
 <div class="container pt-4">
 
-    <div *ngIf="questions">
+    <div>
         <a (click)="backClicked()" class="btn btn-success px-3 d-flex align-items-center float-right" role="button">
             <i class="material-icons mr-2 fa-2x">arrow_back</i> Back
         </a>
@@ -14,9 +14,9 @@
         </div>
     </div>
 
-    <div *ngIf="questions">
+    <div>
         <div class="card bg-secondary text-white mt-3">
-            <div class="card-body p-4 pt-4">
+            <div class="card-body p-4 pt-4" *ngIf="questions.length > 0">
                 <p class=" font-weight-bold">Question {{currentQuestion.order}} of {{questions.length}}</p>
                 <p class="question">{{currentQuestion.question}}</p>
                 <div class="card mb-3 bg-dark" *ngFor="let answer of currentQuestion.answers">
@@ -26,8 +26,13 @@
                 </div>
                 <p class="float-right">Powered by LeadQuizzes</p>
             </div>
+            <div class="card-body p-4 pt-4" *ngIf="questions.length < 1">
+                <p>Quiz has no questions</p>
+                <p class="float-right">Powered by LeadQuizzes</p>
+
+            </div>
         </div>
-        <div>
+        <div *ngIf="questions.length > 0">
             <a (click)="togglePreviousQuestion()" [hidden]="firstQuestion() || hide" class="btn btn-success card-footer-button my-3 px-4 " role="button">Previous </a>
             <a (click)="toggleNextQuestion()" [hidden]="lastQuestion()" class="btn btn-primary card-footer-button my-3 px-4 float-right" role="button">Next </a>
             <a (click)="submitQuiz()" [hidden]="!lastQuestion()" class="btn btn-primary card-footer-button my-3 px-4 float-right" role="button">Submit </a>

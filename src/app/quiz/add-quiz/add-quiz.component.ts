@@ -4,7 +4,7 @@ import { QuizService } from 'app/services/quiz/quiz.service';
 import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { LogService } from 'app/services/logs/log.service';
 import { DatePipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-quiz',
@@ -16,12 +16,14 @@ export class AddQuizComponent implements OnInit {
   quizId: any;
   quiz: any = {}
   isEdit: boolean = false
+  action: String = "Create"
 
   constructor(
     private _quizService: QuizService,
     private _logService: LogService,
     private _datePipe: DatePipe,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _route: Router
   ) {
 
     this._activatedRoute.data.subscribe(data => {
@@ -31,6 +33,7 @@ export class AddQuizComponent implements OnInit {
         if (retrivedQuiz != undefined) {
           this.quiz = retrivedQuiz
           this.isEdit = true
+          this.action = "Edit"
         }
       }
     })
@@ -59,7 +62,7 @@ export class AddQuizComponent implements OnInit {
   createQuiz(quizDetails) {
     this._quizService.createQuiz(quizDetails).subscribe(
       (res) => {
-        // this._logService.createLog(quizDetails.name, "Create")
+        this._logService.createLog(quizDetails.name, "Create")
         this.quizId = res.id
         this._quizService.setQuiz(res)
 
@@ -75,9 +78,9 @@ export class AddQuizComponent implements OnInit {
   editQuiz() {
     this._quizService.editQuiz(this.quiz, this.quiz.id).subscribe(
       (res) => {
-        // this.createLog(quizDetails.name,"Edit")
-        this.quizId = res.id
-        this._quizService.setQuiz(res)
+        this._logService.createLog(this.quiz.name, "Edit")
+        this._route.navigate(['/quiz']);
+
       },
       (err) => {
         console.log("err" + err);

@@ -2,6 +2,7 @@ import { Question } from 'app/models/question';
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from 'app/models/quiz';
 import { QuizService } from 'app/services/quiz/quiz.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-question',
@@ -17,7 +18,8 @@ export class AddQuestionComponent implements OnInit {
   type = "text"
 
   constructor(
-    private _quizService: QuizService
+    private _quizService: QuizService,
+    private _route: Router
   ) {
     this.quiz = this._quizService.getQuiz()
     // this.fetchQuiz(4)
@@ -128,7 +130,6 @@ export class AddQuestionComponent implements OnInit {
   }
 
   saveQuestionDB() {
-
     this.questions.map((question, index) => {
       delete question.answerNotSelected
       question.answers.map((answer, i) => {
@@ -146,6 +147,7 @@ export class AddQuestionComponent implements OnInit {
       this._quizService.saveQuestion(questionDetails, this.quiz.id).subscribe(
         (res) => {
           console.log("res" + "Success");
+          this._route.navigate(['/quiz']);
         },
         (err) => {
           console.log("err" + err);

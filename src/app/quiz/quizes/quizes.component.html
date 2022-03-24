@@ -14,10 +14,10 @@
                     <p class="card-text" m-0 p-0>Quiz</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between py-0 my-0">
-                    <a [routerLink]="['/quiz/questions', quiz.id ]" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Take Quiz</a>
-                    <a [routerLink]="['/quiz/results', quiz.id ]" class="btn btn-warning card-footer-button my-3 px-4 active" role="button">Results</a>
+                    <button [routerLink]="['/quiz/questions', quiz.id ]" class="btn btn-warning card-footer-button my-3 px-4" role="button">Take Quiz</button>
+                    <button [routerLink]="['/quiz/results', quiz.id ]" [disabled]="quiz.takenCount < 1" class="btn btn-warning card-footer-button my-3 px-4" role="button">Results</button>
                     <div class="taken-count text">
-                        <p class="ml-3 pt-2" *ngIf="(quiz.takenCount > 1)"><b>{{quiz.takenCount}}</b><br> Times Taken</p>
+                        <p class="ml-3 pt-2" *ngIf="(quiz.takenCount != 1)"><b>{{quiz.takenCount}}</b><br> Times Taken</p>
                         <p class="ml-3 pt-2" *ngIf="(quiz.takenCount == 1)"><b>{{quiz.takenCount}}</b><br> Time Taken</p>
                     </div>
                 </div>

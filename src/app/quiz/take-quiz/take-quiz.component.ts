@@ -1,11 +1,10 @@
 import { ResultService } from './../../services/result/result.service';
 import { Question } from 'app/models/question';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'app/models/quiz';
 import { QuizService } from 'app/services/quiz/quiz.service';
 import { DatePipe, Location } from '@angular/common';
-import { Jsonp } from '@angular/http';
 
 @Component({
   selector: 'app-take-quiz',
@@ -14,13 +13,13 @@ import { Jsonp } from '@angular/http';
 })
 export class TakeQuizComponent implements OnInit {
 
-  public quiz: Quiz
-  public questions: Question[]
-  public quizId: any;
-  public currentQuestion: any;
-  public submitted = false;
-  public hide = false;
-  public answeredQuestions: any[] = []
+  quiz: Quiz
+  questions: Question[] = []
+  quizId: any;
+  currentQuestion: any = {}
+  submitted = false;
+  hide = false;
+  answeredQuestions: any[] = []
 
 
   constructor(
@@ -28,7 +27,8 @@ export class TakeQuizComponent implements OnInit {
     private _quizService: QuizService,
     private _resultService: ResultService,
     private _location: Location,
-    private _datePipe: DatePipe
+    private _datePipe: DatePipe,
+    private _route: Router
   ) {
     this._activatedRoute.data.subscribe(data => {
       this.quizId = this._activatedRoute.snapshot.params['quizId'];
@@ -55,8 +55,10 @@ export class TakeQuizComponent implements OnInit {
               a.isSelected = false
             })
           })
-          this.currentQuestion = this.questions[0];
-          this.currentQuestion["order"] = 1;
+          if (this.questions.length > 0) {
+            this.currentQuestion = this.questions[0];
+            this.currentQuestion["order"] = 1;
+          }
         });
   }
 
@@ -127,6 +129,26 @@ export class TakeQuizComponent implements OnInit {
     this._resultService.createResult(resultDetails).subscribe(
       (res) => {
         console.log("res" + "created result");
+        let resultId = res.id
+        this.updateTakenCount(resultId)
+      },
+      (err) => {
+        console.log("err" + err);
+
+      }
+    );
+  }
+
+  updateTakenCount(resultId) {
+    let takenCount = this.quiz.takenCount
+    takenCount += 1
+    let quizDetails = {
+      takenCount: takenCount
+    }
+    this._quizService.editQuiz(quizDetails, this.quiz.id).subscribe(
+      (res) => {
+        console.log("res" + "updated result");
+        this._route.navigate(['/quiz/answers', resultId]);
       },
       (err) => {
         console.log("err" + err);
