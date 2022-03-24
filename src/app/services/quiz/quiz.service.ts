@@ -50,6 +50,11 @@ export class QuizService {
       .map((res: Response) => <Result[]>res.json());
   }
 
+  saveQuestion(questionDetails, quizId): Observable<any> {
+    return this._http.post(`${this._quizBaseUrl}/${quizId}/questions`, questionDetails)
+      .map(result => result.json());
+  }
+
 
   setQuiz(quiz: Quiz) {
     this.quiz = quiz
