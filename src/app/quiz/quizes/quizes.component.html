@@ -6,11 +6,11 @@
             <div class="card">
                 <div class="card-top">
                     <img class="card-img-top" src="../../assets/images/image.png" alt="Card image cap">
-                    <a href="#" class="btn btn-danger card-top-btn btn-left" role="button">Delete</a>
-                    <a href="#" class="btn btn-success card-top-btn btn-right" role="button">Edit</a>
+                    <a class="btn btn-danger card-top-btn btn-left" role="button" (click)="deleteQuiz(quiz.id)">Delete</a>
+                    <a class="btn btn-success card-top-btn btn-right" role="button" (click)="editQuiz(quiz)">Edit</a>
                 </div>
                 <div class="card-body quiz-description">
-                    <h5 class="card-title">{{quiz.title}}</h5>
+                    <h5 class="card-title">{{quiz.name}}</h5>
                     <p class="card-text" m-0 p-0>Quiz</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between py-0 my-0">
@@ -19,6 +19,22 @@
                     <div class="taken-count text">
                         <p class="ml-3 pt-2" *ngIf="(quiz.takenCount > 1)"><b>{{quiz.takenCount}}</b><br> Times Taken</p>
                         <p class="ml-3 pt-2" *ngIf="(quiz.takenCount == 1)"><b>{{quiz.takenCount}}</b><br> Time Taken</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div #myModel class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title ">Title</h5>
+                        <button type="button" class="close" (click)="closeModel()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
                     </div>
                 </div>
             </div>

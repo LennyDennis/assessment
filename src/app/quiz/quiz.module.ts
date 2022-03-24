@@ -25,6 +25,10 @@ const routes: Routes = [
     component: AddQuizComponent,
   },
   {
+    path: 'edit/:quizId',
+    component: AddQuizComponent,
+  },
+  {
     path: 'results/:quizId',
     component: ResultsComponent,
   },

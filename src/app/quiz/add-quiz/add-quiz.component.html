@@ -22,7 +22,7 @@
 
                             <label class="name">Quiz Name:*</label>
                             <div class="form-group mb-3">
-                                <input type="text" #nameRef="ngModel" class="form-control alert-secondary" id="name" name="name" aria-describedby="basic-addon3" [(ngModel)]="name" required [class.error]="!nameRef.valid && quizFrom.submitted">
+                                <input type="text" #nameRef="ngModel" class="form-control alert-secondary" id="name" name="name" aria-describedby="basic-addon3" [(ngModel)]="quiz.name" required [class.error]="!nameRef.valid && quizFrom.submitted">
                                 <span *ngIf="quizFrom.submitted" class="invalid-form">
                                     <small class="form-text text-danger" *ngIf="!nameRef.required">Note Title must be valid!</small>
                                 </span>
@@ -30,18 +30,18 @@
 
                             <label class="title">Quiz Title:*</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control alert-secondary" id="title" name="title" aria-describedby="basic-addon3" [(ngModel)]="title" required>
+                                <input type="text" class="form-control alert-secondary" id="title" name="title" aria-describedby="basic-addon3" [(ngModel)]="quiz.title" required>
                             </div>
 
                             <label class="description">Quiz Description:</label>
                             <div class="input-group mb-3">
-                                <textarea class="form-control alert-secondary" id="description" name="description" rows="4" [(ngModel)]="description" required>
+                                <textarea class="form-control alert-secondary" id="description" name="description" rows="4" [(ngModel)]="quiz.description" required>
                         </textarea>
                             </div>
 
                             <label class="action">Call to Action Label:*</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control alert-secondary" id="action" name="action" aria-describedby="basic-addon3" [(ngModel)]="action" required>
+                                <input type="text" class="form-control alert-secondary" id="action" name="action" aria-describedby="basic-addon3" [(ngModel)]="quiz.butttonName" required>
                             </div>
 
                         </div>

@@ -4,6 +4,7 @@ import { QuizService } from 'app/services/quiz/quiz.service';
 import { ThrowStmt } from '@angular/compiler/src/output/output_ast';
 import { LogService } from 'app/services/logs/log.service';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-quiz',
@@ -12,43 +13,53 @@ import { DatePipe } from '@angular/common';
 })
 export class AddQuizComponent implements OnInit {
 
-  public quizId: any;
-  title = "test"
-  name = "test"
-  description = "test"
-  action = "test"
+  quizId: any;
+  quiz: any = {}
+  isEdit: boolean = false
 
   constructor(
     private _quizService: QuizService,
     private _logService: LogService,
-    private _datePipe: DatePipe
+    private _datePipe: DatePipe,
+    private _activatedRoute: ActivatedRoute
+  ) {
 
-  ) { }
+    this._activatedRoute.data.subscribe(data => {
+      let retrievedQuizId = this._activatedRoute.snapshot.params['quizId'];
+      if (retrievedQuizId != undefined) {
+        let retrivedQuiz = this._quizService.getQuiz()
+        if (retrivedQuiz != undefined) {
+          this.quiz = retrivedQuiz
+          this.isEdit = true
+        }
+      }
+    })
 
-  onSubmit(value: any) {
-    console.log(value)
-    let quizDetails = {
-      name: value.name,
-      title: value.title,
-      description: value.description,
-      buttonName: value.action,
-      takenCount: 0,
-      imageUrl: "test"
-    }
-    this.createQuiz(quizDetails)
   }
 
+  onSubmit(value: any) {
+    if (this.isEdit) {
+      this.editQuiz()
+    } else {
+
+      let quizDetails = {
+        name: value.name,
+        title: value.title,
+        description: value.description,
+        buttonName: value.butttonName,
+        takenCount: 0,
+        imageUrl: "test"
+      }
+
+      this.createQuiz(quizDetails)
+    }
+  }
+
+  //Method for creatin the quiz
   createQuiz(quizDetails) {
     this._quizService.createQuiz(quizDetails).subscribe(
       (res) => {
-        let date = new Date()
-        let logDetails = {
-          "name": quizDetails.name,
-          "action": "Create",
-          "time": this._datePipe.transform(date, 'dd/MM/yyyy')
-        }
-        // this.createLog(logDetails)
-
+        // this._logService.createLog(quizDetails.name, "Create")
         this.quizId = res.id
         this._quizService.setQuiz(res)
 
@@ -60,10 +71,13 @@ export class AddQuizComponent implements OnInit {
     );
   }
 
-  createLog(logDetails) {
-    this._logService.createLog(logDetails).subscribe(
+  //Method for editing the quiz
+  editQuiz() {
+    this._quizService.editQuiz(this.quiz, this.quiz.id).subscribe(
       (res) => {
-        console.log("res" + res);
+        // this.createLog(quizDetails.name,"Edit")
+        this.quizId = res.id
+        this._quizService.setQuiz(res)
       },
       (err) => {
         console.log("err" + err);

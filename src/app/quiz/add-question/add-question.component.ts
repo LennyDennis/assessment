@@ -13,27 +13,14 @@ export class AddQuestionComponent implements OnInit {
   quiz: Quiz
   answers: Array<any>;
   questions: Array<any> = []
-  // quizQuestions: Array<any> = []
 
-
-  // question: any = {
-  //   question: ""
-  // }
-  // error: any = {
-  //   question: { hasError: false },
-  //   answers: {
-  //     isEmpty: false,
-  //     answerNotSelected: false
-  //   }
-
-  // }
   type = "text"
 
   constructor(
     private _quizService: QuizService
   ) {
-    // this.quiz = this._quizService.getQuiz()
-    this.fetchQuiz(4)
+    this.quiz = this._quizService.getQuiz()
+    // this.fetchQuiz(4)
     this.addQuestion()
   }
 
@@ -86,9 +73,6 @@ export class AddQuestionComponent implements OnInit {
   }
 
   saveQuestion() {
-
-
-    // this.quizQuestions = []
 
     let hasQuestionError = true;
 
@@ -168,36 +152,8 @@ export class AddQuestionComponent implements OnInit {
 
         }
       );
-
-      // this.quizQuestions.push(questionDetails)
     })
-
-
-    // this.answers.map((answer, i) => {
-    //   answer.id = (i + 1)
-    //   delete answer.hasError
-    // })
-
-
-    // let questionDetails = {
-    //   question: this.question,
-    //   quizId: this.quiz.id,
-    //   answerType: this.type,
-    //   answers: this.answers
-    // }
-
-    // this._quizService.saveQuestion(this.questionDetails, this.quiz.id).subscribe(
-    //   (res) => {
-    //     console.log("res" + "Success");
-    //   },
-    //   (err) => {
-    //     console.log("err" + err);
-
-    //   }
-    // );
-
   }
-
 
   setSelectedAnswer(questionIndex, answerIndex) {
     this.questions[questionIndex].answers.map((answer, i) => {
