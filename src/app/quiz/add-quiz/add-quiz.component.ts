@@ -62,7 +62,7 @@ export class AddQuizComponent implements OnInit {
   createQuiz(quizDetails) {
     this._quizService.createQuiz(quizDetails).subscribe(
       (res) => {
-        this._logService.createLog(quizDetails.name, "Create")
+        this._logService.createLog(quizDetails.name, "Create Quiz")
         this.quizId = res.id
         this._quizService.setQuiz(res)
 
@@ -78,7 +78,7 @@ export class AddQuizComponent implements OnInit {
   editQuiz() {
     this._quizService.editQuiz(this.quiz, this.quiz.id).subscribe(
       (res) => {
-        this._logService.createLog(this.quiz.name, "Edit")
+        this._logService.createLog(this.quiz.name, "Edit Quiz")
         this._route.navigate(['/quiz']);
 
       },

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'app/models/quiz';
 import { QuizService } from 'app/services/quiz/quiz.service';
 import { DatePipe, Location } from '@angular/common';
+import { LogService } from 'app/services/logs/log.service';
 
 @Component({
   selector: 'app-take-quiz',
@@ -21,11 +22,11 @@ export class TakeQuizComponent implements OnInit {
   hide = false;
   answeredQuestions: any[] = []
 
-
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _quizService: QuizService,
     private _resultService: ResultService,
+    private _logService: LogService,
     private _location: Location,
     private _datePipe: DatePipe,
     private _route: Router
@@ -41,6 +42,7 @@ export class TakeQuizComponent implements OnInit {
       .subscribe(
         res => {
           this.quiz = res;
+          this._logService.createLog(this.quiz.name, "Read Quiz")
           this.fetchAnswers(this.quiz.id)
         });
   }

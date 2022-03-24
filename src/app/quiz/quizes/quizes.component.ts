@@ -40,7 +40,7 @@ export class QuizesComponent implements OnInit {
       .subscribe(res => {
         let quiz = this.quizes.find(q => q.id === quizId);
         this.quizes = this.quizes.filter(q => q.id != quizId)
-        this._logService.createLog(quiz.name, "Delete")
+        this._logService.createLog(quiz.name, "Delete Quiz")
 
       })
   }
