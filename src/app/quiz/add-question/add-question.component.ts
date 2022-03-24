@@ -38,6 +38,7 @@ export class AddQuestionComponent implements OnInit {
     this.answers = []
   }
 
+  //method for adding a new question
   addQuestion() {
     let qt = {
       question: "",
@@ -49,9 +50,10 @@ export class AddQuestionComponent implements OnInit {
 
   }
 
-  deleteQuestion(index) {
-    if (index !== -1) {
-      this.answers.splice(index, 1);
+  //remove question 
+  deleteQuestion(questionIndex) {
+    if (questionIndex !== -1) {
+      this.questions.splice(questionIndex, 1);
     }
   }
 
@@ -74,8 +76,8 @@ export class AddQuestionComponent implements OnInit {
     this.questions[questionIndex].answers.splice(answerIndex, 1);
   }
 
+  //validation happens here
   saveQuestion() {
-
     let hasQuestionError = true;
 
     this.questions.map((q, index) => {
@@ -129,6 +131,7 @@ export class AddQuestionComponent implements OnInit {
     }
   }
 
+  //actual saving of the question to the db happens here
   saveQuestionDB() {
     this.questions.map((question, index) => {
       delete question.answerNotSelected

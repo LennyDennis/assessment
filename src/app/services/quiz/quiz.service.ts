@@ -26,33 +26,39 @@ export class QuizService {
   ) {
   }
 
+  //get all quizes api call
   getQuizes(): Observable<Quiz[]> {
     return this._http.get(this._quizBaseUrl)
       .map((res: Response) => <Quiz[]>res.json());
 
   }
 
+  //delete a quiz api call
   deleteQuiz(quizId: number): Observable<any> {
     return this._http.delete(`${this._quizBaseUrl}/${quizId}`)
       .map((res: Response) => <Quiz[]>res.json());
 
   }
 
+  //get a quiz api call
   getQuizApi(quizId): Observable<Quiz> {
     return this._http.get(`${this._quizBaseUrl}/${quizId}`)
       .map((res: Response) => <Quiz>res.json());
   }
 
+  //get all quiz questions api call
   getQuestions(quizId): Observable<Question[]> {
     return this._http.get(`${this._quizBaseUrl}/${quizId}/questions`)
       .map((res: Response) => <Question[]>res.json());
   }
 
+  //create a quiz api call
   createQuiz(quizDetails): Observable<any> {
     return this._http.post(this._quizBaseUrl, quizDetails)
       .map(result => result.json());
   }
 
+  //edit a quiz api call
   editQuiz(quizDetails, quizId): Observable<any> {
     console.log(quizId)
 
@@ -60,20 +66,24 @@ export class QuizService {
       .map(result => result.json());
   }
 
+  //get results of a specific quiz api call
   getResults(quizId): Observable<Result[]> {
     return this._http.get(`${this._quizBaseUrl}/${quizId}/results`)
       .map((res: Response) => <Result[]>res.json());
   }
 
+  //save question to the db
   saveQuestion(questionDetails, quizId): Observable<any> {
     return this._http.post(`${this._quizBaseUrl}/${quizId}/questions`, questionDetails)
       .map(result => result.json());
   }
 
+  //method used to set a quiz share the quiz objetc betweem components
   setQuiz(quiz: Quiz) {
     this.quiz = quiz
   }
 
+  //methods used to get a quiz
   getQuiz() {
     return this.quiz
   }

@@ -16,7 +16,10 @@
 
             <div class="card-body pt-2" *ngFor="let qt of questions; let questionIndex = index">
 
-                <p class="mt-2 font-weight-bold">Question {{questionIndex+1}}</p>
+                <div class="d-flex justify-content-between py-0">
+                    <p class="mt-2 font-weight-bold">Question {{questionIndex+1}}</p>
+                    <button class="btn btn-sm btn-danger card-footer-button my-3 px-4" role="button" (click)="deleteQuestion(questionIndex)">Delete Question </button>
+                </div>
                 <div class="form-group mb-2">
                     <input type="text" class="form-control alert-secondary" id="question{{questionIndex}}" name="question{{questionIndex}}" aria-describedby="basic-addon3" [(ngModel)]="qt.question" required>
                 </div>
