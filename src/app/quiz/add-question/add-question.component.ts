@@ -11,16 +11,30 @@ import { QuizService } from 'app/services/quiz/quiz.service';
 export class AddQuestionComponent implements OnInit {
 
   quiz: Quiz
-  public answers: Array<any>;
-  question: any
+  answers: Array<any>;
+  questions: Array<any> = []
+  // quizQuestions: Array<any> = []
+
+
+  // question: any = {
+  //   question: ""
+  // }
+  // error: any = {
+  //   question: { hasError: false },
+  //   answers: {
+  //     isEmpty: false,
+  //     answerNotSelected: false
+  //   }
+
+  // }
   type = "text"
-  questionDetails: any = {}
 
   constructor(
     private _quizService: QuizService
   ) {
     // this.quiz = this._quizService.getQuiz()
-    this.fetchQuiz(1)
+    this.fetchQuiz(4)
+    this.addQuestion()
   }
 
   fetchQuiz(quizId) {
@@ -28,7 +42,6 @@ export class AddQuestionComponent implements OnInit {
       .subscribe(
         res => {
           this.quiz = res;
-          console.log(this.quiz)
         });
   }
 
@@ -36,50 +49,161 @@ export class AddQuestionComponent implements OnInit {
     this.answers = []
   }
 
-  addAnswer() {
-    let answer = {
-      answer: "",
-      correct: false
+  addQuestion() {
+    let qt = {
+      question: "",
+      answerType: "text",
+      answers: []
     }
-    this.answers.push(answer)
+
+    this.questions.push(qt)
+
   }
 
-  deleteAnswer(index) {
+  deleteQuestion(index) {
     if (index !== -1) {
       this.answers.splice(index, 1);
     }
   }
 
-  saveQuestion() {
-    this.answers.map((answer, i) => {
-      answer.id = (i + 1)
-    })
+  addAnswer(questionIndex) {
 
-    this.questionDetails = {
-      question: this.question,
-      type: this.type,
-      answers: this.answers
+    if (this.questions[questionIndex].answerEmpty) {
+      delete this.questions[questionIndex].answerEmpty
     }
 
-    this._quizService.saveQuestion(this.questionDetails, this.quiz.id).subscribe(
-      (res) => {
-        console.log("res" + "Success");
-      },
-      (err) => {
-        console.log("err" + err);
+    let answer = {
+      answer: "",
+      correct: false,
+      hasError: false
+    }
 
+    this.questions[questionIndex].answers.push(answer)
+  }
+
+  deleteAnswer(questionIndex, answerIndex) {
+    this.questions[questionIndex].answers.splice(answerIndex, 1);
+  }
+
+  saveQuestion() {
+
+
+    // this.quizQuestions = []
+
+    let hasQuestionError = true;
+
+    this.questions.map((q, index) => {
+      if (q.hasError) {
+        delete q.hasError
       }
-    );
+      delete q.answerNotSelected
+
+      if (q.question == undefined || q.question == null || q.question.length == 0) {
+        q.hasError = true
+      } else {
+        if (q.answers.length > 0) {
+          let isCorrect = false
+          q.answers.map((answer, i) => {
+            if (answer.answer.length === 0) {
+              answer.hasError = true
+            } else {
+              answer.hasError = false
+            }
+
+            if (answer.correct == true) {
+              isCorrect = true
+            }
+          })
+
+          q.answerNotSelected = !isCorrect
+          let answerError = false;
+          q.answers.map(answer => {
+            if (answer.hasError === true) {
+              answerError = true
+            }
+          })
+
+
+          if (answerError || q.answerNotSelected) {
+            hasQuestionError = true
+          } else {
+            hasQuestionError = false
+          }
+
+        } else {
+          q.answerEmpty = true
+        }
+      }
+    })
+
+    if (!hasQuestionError) {
+      this.saveQuestionDB()
+    } else {
+      console.log("error")
+    }
+  }
+
+  saveQuestionDB() {
+
+    this.questions.map((question, index) => {
+      delete question.answerNotSelected
+      question.answers.map((answer, i) => {
+        answer.id = (i + 1)
+        delete answer.hasError
+      })
+
+      let questionDetails = {
+        question: question.question,
+        quizId: this.quiz.id,
+        answerType: question.answerType,
+        answers: question.answers
+      }
+
+      this._quizService.saveQuestion(questionDetails, this.quiz.id).subscribe(
+        (res) => {
+          console.log("res" + "Success");
+        },
+        (err) => {
+          console.log("err" + err);
+
+        }
+      );
+
+      // this.quizQuestions.push(questionDetails)
+    })
+
+
+    // this.answers.map((answer, i) => {
+    //   answer.id = (i + 1)
+    //   delete answer.hasError
+    // })
+
+
+    // let questionDetails = {
+    //   question: this.question,
+    //   quizId: this.quiz.id,
+    //   answerType: this.type,
+    //   answers: this.answers
+    // }
+
+    // this._quizService.saveQuestion(this.questionDetails, this.quiz.id).subscribe(
+    //   (res) => {
+    //     console.log("res" + "Success");
+    //   },
+    //   (err) => {
+    //     console.log("err" + err);
+
+    //   }
+    // );
+
   }
 
 
-  setSelectedAnswer(index: number) {
-    this.answers.map((answer, i) => {
-      console.log(index, i);
-      (i == index) ? answer.correct = true : answer.correct = false
+  setSelectedAnswer(questionIndex, answerIndex) {
+    this.questions[questionIndex].answers.map((answer, i) => {
+      (i == answerIndex) ? answer.correct = true : answer.correct = false
     })
   }
-
 
 
 }

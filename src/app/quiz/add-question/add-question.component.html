@@ -10,24 +10,26 @@
     </div>
 
 
-    <div class="card ">
+    <div class="card">
 
         <form #questionForm="ngForm">
 
-            <div class="card-body  pt-2">
+            <div class="card-body pt-2" *ngFor="let qt of questions; let questionIndex = index">
 
-                <p class="mt-2 font-weight-bold">Question 1</p>
+                <p class="mt-2 font-weight-bold">Question {{questionIndex+1}}</p>
                 <div class="form-group mb-2">
-                    <input type="text" class="form-control alert-secondary" id="question" name="question" aria-describedby="basic-addon3" [(ngModel)]="question" required>
+                    <input type="text" class="form-control alert-secondary" id="question{{questionIndex}}" name="question{{questionIndex}}" aria-describedby="basic-addon3" [(ngModel)]="qt.question" required>
+                    <span class="invalid-form" *ngIf="qt?.hasError">
+                        <small class="form-text text-danger">This field is required!</small>
+                    </span>
                 </div>
 
                 <p class="question">Answer Type:</p>
                 <div class="form-group p-0  mb-2">
-                    <input type="text" class="form-control alert-secondary" id="type" name="type" aria-describedby="basic-addon3" [(ngModel)]="type" required disabled>
+                    <input type="text" class="form-control alert-secondary" id="type{{questionIndex}}" name="type{{questionIndex}}" aria-describedby="basic-addon3" [(ngModel)]="type" required disabled>
                 </div>
 
-
-                <a class="btn btn-success btn-sm d-flex align-items-center float-right mt-2" (click)="addAnswer()">
+                <a class="btn btn-success btn-sm d-flex align-items-center float-right mt-2" (click)="addAnswer(questionIndex)">
                     Add Answer
                 <i class="tiny material-icons ml-1 ">add</i> 
                 </a>
@@ -37,45 +39,46 @@
                     </div>
                 </div>
 
-                <!-- <form class="form-repeater"> -->
                 <div class="card ">
-                    <div class="card-body" *ngFor="let answer of answers ; let i = index">
+                    <div class="card-body py-0" *ngIf="qt?.answerEmpty">
+                        <p class="mb-0 text-danger">Please add answers</p>
+                    </div>
+
+                    <div class="card-body py-0" *ngIf="qt.answers.length > 0 && qt.answerNotSelected">
+                        <p class="mb-0 text-danger">Please select the correct answer</p>
+                    </div>
+
+
+                    <div class="card-body py-2" *ngFor="let answer of qt.answers ; let answerIndex = index">
                         <div class="input-group p-0 m-0">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" name="ans{{i}}" [checked]="answer.correct" [(ngModel)]="answer.correct" (change)="setSelectedAnswer(i)">
+                                    <input type="checkbox" name="ans{{questionIndex}}{{answerIndex}}" [checked]="answer.correct" [(ngModel)]="answer.correct" (change)="setSelectedAnswer(questionIndex,answerIndex)">
                                 </div>
                             </div>
-                            <input type="text" class="form-control alert-secondary " id="answer{{i}}" name="answer{{i}}" aria-describedby="basic-addon2" [(ngModel)]="answer.answer" required>
+                            <input type="text" class="form-control alert-secondary " id="answer{{questionIndex}}{{answerIndex}}" name="answer{{questionIndex}}{{answerIndex}}" aria-describedby="basic-addon2" [(ngModel)]="answer.answer" required>
                             <div class="input-group-append">
-                                <i class="material-icons ml-1 fa-2x input-group-text bg-danger text-white" (click)="deleteAnswer(i)" type="button">close</i>
+                                <i class="material-icons ml-1 fa-2x input-group-text bg-danger text-white" (click)="deleteAnswer(questionIndex,answerIndex)" type="button">close</i>
                             </div>
                         </div>
+                        <span class="invalid-form" *ngIf="answer.hasError">
+                            <small class="form-text text-danger">This field is required!</small>
+                         </span>
                     </div>
-                    <div class="card-body">
-                        <!-- <pre>{{questionDetails|json}}</pre> -->
-                        <!-- <pre>{{type|json}}</pre> -->
-                        <pre>{{answers|json}}</pre>
-                    </div>
+
                 </div>
-                <!-- </form> -->
             </div>
 
         </form>
 
+        <pre>{{quizQuestions|json}}</pre>
+
+
         <div class="card-footer d-flex justify-content-between py-0">
-            <a href="#" class="btn btn-sm btn-primary card-footer-button my-3 px-3 " role="button">Add Another Question </a>
+            <a class="btn btn-sm btn-primary card-footer-button my-3 px-3" role="button" (click)="addQuestion()">Add Another Question </a>
             <button class="btn btn-sm btn-success card-footer-button my-3 px-4" role="button" (click)="saveQuestion()">Save Question </button>
         </div>
 
     </div>
-
-    <div class=" d-flex justify-content-between py-0">
-        <a href="#" class="btn btn-secondary card-footer-button my-3 px-4 " role="button">Previous </a>
-        <a href="#" class="btn btn-secondary card-footer-button my-3 px-4 " role="button">Next </a>
-    </div>
-
-
-
 
 </div>

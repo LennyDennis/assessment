@@ -20,8 +20,6 @@ export class QuizService {
   private _quizBaseUrl = `${environment.baseUrl}/quizs`
 
   constructor(private _http: Http) {
-    console.log("Test")
-
   }
 
   getQuizes(): Observable<Quiz[]> {
